@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="629.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.altc195project.controller.Reports">
+    <children>
+        <TabPane layoutX="-1.0" layoutY="-1.0" prefHeight="552.0" prefWidth="907.0" style="-fx-font-family: 'consolas'; -fx-font-size: 10pt;" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Total Client Appointments">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TableView fx:id="typeTableView" layoutX="14.0" layoutY="3.0" prefHeight="512.0" prefWidth="400.0" style="-fx-font-family: 'Consolas'; -fx-font-size: 10pt;">
+                                    <columns>
+                                        <TableColumn fx:id="typeCol" prefWidth="201.0" text="Appointment Type" />
+                                        <TableColumn fx:id="typeTotalCol" prefWidth="198.0" text="Total" />
+                                    </columns>
+                                </TableView>
+                                <TableView fx:id="weekTableView" layoutX="493.0" layoutY="3.0" prefHeight="511.0" prefWidth="400.0" style="-fx-font-family: 'Consolas'; -fx-font-size: 10pt;">
+                                    <columns>
+                                        <TableColumn fx:id="weekCol" prefWidth="212.0" text="Appointment Week" />
+                                        <TableColumn fx:id="weekTotalCol" prefWidth="190.0" text="Total" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Stylist Schedules">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TableView fx:id="stylistScheduleTable" layoutY="14.0" prefHeight="378.0" prefWidth="907.0" style="-fx-font-family: 'Consolas'; -fx-font-size: 10pt;">
+                                    <columns>
+                                        <TableColumn fx:id="stylistApptIdCol" prefWidth="120.0" text="Appointment ID" />
+                                        <TableColumn fx:id="stylistTitleCol" prefWidth="99.0" text="Title" />
+                                        <TableColumn fx:id="stylistTypeCol" prefWidth="109.0" text="Type" />
+                                        <TableColumn fx:id="stylistDescrCol" prefWidth="140.0" text="Description" />
+                                        <TableColumn fx:id="stylistStartCol" prefWidth="133.0" text="Start date/Time" />
+                                        <TableColumn fx:id="stylistEndCol" prefWidth="175.0" text="End date/ Time" />
+                                        <TableColumn fx:id="stylistClientIdCol" prefWidth="130.0" text="Client ID" />
+                                    </columns>
+                                </TableView>
+                                <Label layoutX="14.0" layoutY="411.0" text="Select a Stylist:">
+                                    <font>
+                                        <Font name="Consolas" size="12.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox fx:id="stylistCombo" layoutX="14.0" layoutY="437.0" prefWidth="150.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Client By Activity">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TableView fx:id="clientActivityTable" layoutX="207.0" layoutY="91.0" prefHeight="341.0" prefWidth="393.0" style="-fx-font-family: 'Consolas'; -fx-font-size: 10pt;">
+                                    <columns>
+                                        <TableColumn fx:id="activityStatusCol" prefWidth="187.0" text="Client User Activity" />
+                                        <TableColumn fx:id="activityTotalCol" prefWidth="205.0" text="Client Total" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+      <Button fx:id="backButton" layoutX="746.0" layoutY="579.0" mnemonicParsing="false" onAction="#backMainMenu" prefHeight="40.0" prefWidth="112.0" text="Back to Menu">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font></Button>
+    </children>
+</AnchorPane>

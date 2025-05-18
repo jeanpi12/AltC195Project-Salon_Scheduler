@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="711.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.altc195project.controller.Clients">
+   <children>
+      <TableView fx:id="clientTable" layoutX="14.0" layoutY="14.0" prefHeight="551.0" prefWidth="1026.0" style="-fx-font-family: 'consolas'; -fx-font-size: 10pt;">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Client ID" />
+          <TableColumn prefWidth="113.0" text="Client Name" />
+            <TableColumn prefWidth="79.0" text="Email" />
+            <TableColumn prefWidth="136.0" text="Hair Color" />
+            <TableColumn prefWidth="160.0" text="Postal Code" />
+            <TableColumn prefWidth="174.0" text="Active Status" />
+            <TableColumn prefWidth="151.0" text="State/Province" />
+            <TableColumn prefWidth="137.0" text="Country" />
+        </columns>
+      </TableView>
+      <GridPane layoutX="63.0" layoutY="591.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints />
+        </rowConstraints>
+         <children>
+            <Button fx:id="clientUpdLabel" mnemonicParsing="false" onAction="#actionClientUpdate" prefHeight="40.0" prefWidth="85.0" text="Update">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="clientAddLabel" mnemonicParsing="false" onAction="#actionClientAdd" prefHeight="40.0" prefWidth="85.0" text="Add" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteClientButton" mnemonicParsing="false" onAction="#actionClientDelete" prefHeight="40.0" prefWidth="85.0" text="Delete" GridPane.columnIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <Button layoutX="856.0" layoutY="591.0" mnemonicParsing="false" onAction="#backMainMenu" prefHeight="40.0" prefWidth="123.0" text="Back to Menu">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

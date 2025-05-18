@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AltC195Project Javadoc Index</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; line-height: 1.4; }
+    h1 { font-size: 2.5em; margin-bottom: 0.5em; }
+    h2 { font-size: 1.8em; margin-top: 1.5em; border-bottom: 1px solid #ccc; padding-bottom: 0.2em; }
+    h3 { font-size: 1.4em; margin-top: 1em; }
+    p { margin: 0.5em 0; }
+    code { background: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+    dt { font-weight: bold; margin-top: 0.8em; }
+    dd { margin-left: 1em; margin-bottom: 0.6em; }
+  </style>
+</head>
+<body>
+<h1>AltC195Project Javadoc Index</h1>
+<p>This document compiles all Javadoc comments following Oracle’s best-practices guidelines. Each class and its members are documented here, and methods using lambda expressions include justifications.</p>
+
+<!-- 1 -->
+<h2>Class: AddClients</h2>
+<p><strong>Purpose:</strong> Controller for the “Add Client” screen; populates country list and handles client creation.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>initialize(URL url, ResourceBundle rb)</dt>
+  <dd>Populate the country ComboBox from the database and set default values for new client form.</dd>
+  <dt>actionSaveButton(ActionEvent event)</dt>
+  <dd>Validates input fields and inserts a new client via <code>ClientDAO.addClient</code>. Shows confirmation or error alert.</dd>
+  <dt>actionCancelButton(ActionEvent event)</dt>
+  <dd>Abandons client creation and returns to the main Clients screen.</dd>
+</dl>
+
+<!-- 2 -->
+<h2>Class: AddNewAppointments</h2>
+<p><strong>Purpose:</strong> Controller for the “Add Appointment” screen; initializes form controls, enforces business rules, and persists new appointments.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>initialize(URL url, ResourceBundle rb)</dt>
+  <dd>Sets up date pickers, time slots, stylist and client ComboBoxes, and disables past dates.</dd>
+  <dt>isWithinBusiness(LocalDateTime start, LocalDateTime end)</dt>
+  <dd>Checks that proposed times fall within salon business hours and not on holidays.</dd>
+  <dt>actionSaveButton(ActionEvent e)</dt>
+  <dd>
+    Gathers user input, validates business hours and overlaps, then calls <code>AppointmentDAO.addingAppointments</code>.
+    <em>Throws alert on invalid data.</em>
+  </dd>
+  <dt>actionCancelButton(ActionEvent e)</dt>
+  <dd>Returns to the Appointments list without saving.</dd>
+</dl>
+
+<!-- 3 -->
+<h2>Class: Appointments</h2>
+<p><strong>Purpose:</strong> Controller for the main Appointments view; displays, filters, and dispatches CRUD operations on appointments.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>initialize(URL url, ResourceBundle rb)</dt>
+  <dd>Loads all appointments into the table and sets up radio‐button filters.</dd>
+  <dt>allAppointments(ActionEvent e)</dt>
+  <dd>Displays every appointment.</dd>
+  <dt>weekAppointments(ActionEvent e)</dt>
+  <dd>Displays appointments for the current week.</dd>
+  <dt>monthAppointments(ActionEvent e)</dt>
+  <dd>Displays appointments for the current month.</dd>
+  <dt>actionAppointmentAdd(ActionEvent e)</dt>
+  <dd>Switches to the AddNewAppointments view.</dd>
+  <dt>actionAppointmentUpdate(ActionEvent e)</dt>
+  <dd>Selects an appointment and switches to ModifyAppointments.</dd>
+  <dt>actionAppointmentDelete(ActionEvent e)</dt>
+  <dd>Deletes the selected appointment after user confirmation.</dd>
+  <dt>backMainMenu(ActionEvent e)</dt>
+  <dd>Returns to the main menu.</dd>
+</dl>
+
+<!-- 4 -->
+<h2>Class: Clients</h2>
+<p><strong>Purpose:</strong> Controller for the main Clients view; displays, filters, and dispatches CRUD operations on clients.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>initialize(URL url, ResourceBundle rb)</dt>
+  <dd>Loads all clients into the table.
+    Uses:
+    <code>allClients.forEach(c -> countryCombo.getItems().add(c.getCountry()));</code><br>
+    <em>Justification:</em> Lambda forEach simplifies populating the country ComboBox from the client list without explicit loops.</em>
+  </dd>
+  <dt>actionClientAdd(ActionEvent e)</dt>
+  <dd>Switches to the AddClients view.</dd>
+  <dt>actionClientUpdate(ActionEvent e)</dt>
+  <dd>Selects a client and switches to ModifyClients view.</dd>
+  <dt>actionClientDelete(ActionEvent e)</dt>
+  <dd>Inactivates or deletes the selected client after confirmation, cleans up related appointments first.</dd>
+  <dt>backMainMenu(ActionEvent e)</dt>
+  <dd>Returns to the main menu.</dd>
+</dl>
+
+<!-- 5 -->
+<h2>Class: Login</h2>
+<p><strong>Purpose:</strong> Controller for the login screen; authenticates users against the database.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>actionLoginButton(ActionEvent e)</dt>
+  <dd>Validates credentials via <code>UserDAO.userLogin</code>. On success, loads main menu; on failure, shows error alert.</dd>
+  <dt>showError(String msg)</dt>
+  <dd>Displays an error alert with the given message.</dd>
+</dl>
+
+<!-- 6 -->
+<h2>Class: Main</h2>
+<p><strong>Purpose:</strong> Application entry point; launches JavaFX.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>start(Stage primaryStage)</dt>
+  <dd>Opens the Login screen on application launch.</dd>
+  <dt>main(String[] args)</dt>
+  <dd>Calls JavaFX <code>launch</code>.</dd>
+</dl>
+
+<!-- 7 -->
+<h2>Class: Menu</h2>
+<p><strong>Purpose:</strong> Controller for the application main menu; navigates between Appointments, Clients, and Reports.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>appointmentsMenu(ActionEvent e)</dt>
+  <dd>Switches to the Appointments view.</dd>
+  <dt>clientsMenu(ActionEvent e)</dt>
+  <dd>Switches to the Clients view.</dd>
+  <dt>reportsMenu(ActionEvent e)</dt>
+  <dd>Switches to the Reports view.</dd>
+  <dt>exitApp(ActionEvent e)</dt>
+  <dd>Closes database connection and exits application.</dd>
+</dl>
+
+<!-- 8 -->
+<h2>Class: ModifyAppointments</h2>
+<p><strong>Purpose:</strong> Controller for the “Modify Appointment” screen; reuses AddNewAppointments init logic, pre-fills fields, and updates appointments.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>initialize(URL url, ResourceBundle rb)</dt>
+  <dd>Calls AddNewAppointments.initialize(), then populates form fields from <code>selected</code> appointment.</dd>
+  <dt>actionSaveButton(ActionEvent e)</dt>
+  <dd>Validates and updates appointment via <code>AppointmentDAO.updatingAppointments</code>, then returns to Appointments view.</dd>
+  <dt>actionCancelButton(ActionEvent e)</dt>
+  <dd>Cancels edit and returns to Appointments view.</dd>
+</dl>
+
+<!-- 9 -->
+<h2>Class: ModifyClients</h2>
+<p><strong>Purpose:</strong> Controller for the “Modify Client” screen; pre-fills client data and updates via <code>ClientDAO.updateClient</code>.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>initialize(URL url, ResourceBundle rb)</dt>
+  <dd>Populates country list, loads <code>selectedClient</code> data, and sets active‐checkbox state.</dd>
+  <dt>actionSaveButton(ActionEvent e)</dt>
+  <dd>Validates inputs, deletes related appointments if inactivating, updates client record, then returns to Clients view.</dd>
+  <dt>actionCancelButton(ActionEvent e)</dt>
+  <dd>Cancels edit and returns to Clients view.</dd>
+</dl>
+
+<!-- 10 -->
+<h2>Class: Reports</h2>
+<p><strong>Purpose:</strong> Controller for the Reports view; generates summary reports on appointments and clients.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>generateClientReport()</dt>
+  <dd>
+    Filters only active clients:
+    <code>clients.stream().filter(c -> c.getClientActivity() == 1).collect(Collectors.toList())</code><br>
+    <em>Justification:</em> Using streams and lambdas makes filtering concise and readable compared to manual loops.</em>
+  </dd>
+  <dt>generateAppointmentReport()</dt>
+  <dd>Aggregates appointment counts by type, week, or month and displays in a chart.</dd>
+</dl>
+
+<!-- 11 -->
+<h2>Class: AppointmentDAO</h2>
+<p><strong>Purpose:</strong> Data‐access object for <code>Appointment</code>; CRUD operations and reporting queries.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>getAppointmentList()</dt><dd>Fetches all appointments with client & stylist join.</dd>
+  <dt>addingAppointments(...)</dt><dd>Inserts a new appointment record.</dd>
+  <dt>updatingAppointments(...)</dt><dd>Updates existing appointment record.</dd>
+  <dt>deleteAppointment(int id)</dt><dd>Deletes appointment by ID.</dd>
+  <dt>weeklyAppointments()</dt><dd>Fetches appointments for the current week.</dd>
+  <dt>monthlyAppointments()</dt><dd>Fetches appointments for the current month.</dd>
+  <dt>clientAppointments(int clientId)</dt><dd>Fetches appointments for a given client.</dd>
+  <dt>appointmentType()</dt><dd>Counts appointments by type.</dd>
+  <dt>appointmentTypeWeek()</dt><dd>Counts appointments by type per month.</dd>
+</dl>
+
+<!-- 12 -->
+<h2>Class: ClientDAO</h2>
+<p><strong>Purpose:</strong> Data‐access object for <code>Client</code>; CRUD and lookup by name or ID.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>getAllClients()</dt><dd>Retrieves all client records.</dd>
+  <dt>returnClientList(int id)</dt><dd>Fetches one client by ID.</dd>
+  <dt>returnClientId(String name)</dt><dd>Looks up client ID by name.</dd>
+</dl>
+
+<!-- 13 -->
+<h2>Class: StylistDAO</h2>
+<p><strong>Purpose:</strong> Data‐access object for <code>Stylist</code>; lookup of stylists.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>getAllStylist()</dt><dd>Lists all stylists.</dd>
+  <dt>returnStylistList(int id)</dt><dd>Fetches one stylist by ID.</dd>
+  <dt>returnStylistId(String name)</dt><dd>Looks up stylist ID by name.</dd>
+</dl>
+
+<!-- 14 -->
+<h2>Class: UserDAO</h2>
+<p><strong>Purpose:</strong> Data‐access object for <code>User</code>; authentication and user lookup.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>getUserList()</dt><dd>Returns all user accounts.</dd>
+  <dt>userLogin(String loginName, String psw)</dt><dd>Validates credentials.</dd>
+  <dt>loginNameValidation(String loginName)</dt><dd>Checks if a login name exists.</dd>
+  <dt>pswValidation(String psw)</dt><dd>Checks if a password exists.</dd>
+  <dt>getIdUser(String loginName)</dt><dd>Fetches user ID by login name.</dd>
+  <dt>returnIdUser(int id)</dt><dd>Fetches a user by ID.</dd>
+</dl>
+
+<!-- 15 -->
+<h2>Class: JDBC</h2>
+<p><strong>Purpose:</strong> Manages the database connection lifecycle.</p>
+<h3>Methods</h3>
+<dl>
+  <dt>openConnection()</dt><dd>Loads the MySQL driver and opens the connection.</dd>
+  <dt>closeConnection()</dt><dd>Closes the connection.</dd>
+</dl>
+
+<!-- 16 -->
+<h2>Class: Appointment</h2>
+<p><strong>Purpose:</strong> Model representing an appointment record.</p>
+<h3>Key Members</h3>
+<dl>
+  <dt>Fields:</dt>
+  <dd>idAppointment, titleAppointment, descrAppointment, locationAppointment, typeAppointment, startAppointment, endAppointment, idClient, idStyle, stylistNameAppointment, totalAppointmentTypes, clientNameAppointment.</dd>
+  <dt>Constructors:</dt>
+  <dd>Overloaded to support full record, report summaries, stylist schedules, client appointments.</dd>
+  <dt>Methods:</dt>
+  <dd>Getters/setters for all fields; <code>timeOverlapCheck()</code> to detect schedule conflicts.</dd>
+</dl>
+
+<!-- 17 -->
+<h2>Class: Client</h2>
+<p><strong>Purpose:</strong> Model representing a client record.</p>
+<h3>Key Members</h3>
+<dl>
+  <dt>Fields:</dt>
+  <dd>clientId, clientName, clientEmail, clientHairColor, clientPostalCode, clientState, clientCountry, clientActivity.</dd>
+  <dt>Methods:</dt>
+  <dd>Getters and setters for each field.</dd>
+</dl>
+
+<!-- 18 -->
+<h2>Class: Stylist</h2>
+<p><strong>Purpose:</strong> Model representing a stylist.</p>
+<h3>Key Members</h3>
+<dl>
+  <dt>Fields:</dt>
+  <dd>stylistId, stylistName.</dd>
+  <dt>Methods:</dt>
+  <dd>Getters, setters, and <code>toString()</code> override returning the stylist name.</dd>
+</dl>
+
+<!-- 19 -->
+<h2>Class: User</h2>
+<p><strong>Purpose:</strong> Model representing an application user.</p>
+<h3>Key Members</h3>
+<dl>
+  <dt>Fields:</dt>
+  <dd>idUser, loginName, altPSW.</dd>
+  <dt>Methods:</dt>
+  <dd>Constructors for full and partial initialization; getters and setters.</dd>
+</dl>
+</body>
+</html>
